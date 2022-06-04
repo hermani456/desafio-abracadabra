@@ -3,14 +3,16 @@ const app = express()
 
 app.use(express.static('assets'))
 
-const data = ['juan', 'pedro', 'maria', 'jose', 'astrid', 'javier']
+const data = {
+   usuarios: ['juan', 'pedro', 'maria', 'jose', 'astrid', 'javier']
+}
 
 app.get('/abracadabra/usuarios', (req, res) => {
 	res.send(data)
 })
 
 app.use('/abracadabra/juego/:usuario', (req, res, next) => {
-	const findUser = data.find((usuario) => usuario === req.params.usuario)
+	const findUser = data.usuarios.find((usuario) => usuario === req.params.usuario)
 	if (findUser) {
 		next()
 	} else {
